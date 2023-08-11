@@ -1,0 +1,268 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Space Haven</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  height: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	height: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> Space Haven</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_added_descending_name_ascending.html#quicklink-2023-08-11">2023-08-11</a> 0:29:07</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_modified_descending_name_ascending.html#quicklink-2023-08-11">2023-08-11</a> 0:43:03</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default%20list%20text_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_library_ascending_name_ascending.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default%20list%20text_source_ascending_name_ascending.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_platform_ascending_name_ascending.html#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_releasedate_descending_name_ascending.html#quicklink-2020-05-21">2020-05-21</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_communityscore_descending_name_ascending.html#quicklink-64">64</a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Indie">Indie</a><br/><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Role-playing (RPG)">Role-playing (RPG)</a><br/><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Simulator">Simulator</a><br/><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Strategy">Strategy</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_developer_ascending_name_ascending.html#quicklink-Bugbyte Ltd.">Bugbyte Ltd.</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_publisher_ascending_name_ascending.html#quicklink-Bugbyte Ltd.">Bugbyte Ltd.</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_feature_ascending_name_ascending.html#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="http://bugbyte.fi/spacehaven/" target="_blank">Official</a><br/><a href="https://twitter.com/SpaceHavenGame" target="_blank">Twitter</a><br/><a href="https://www.instagram.com/spacehavengame" target="_blank">Instagram</a><br/><a href="https://store.steampowered.com/app/979110/Space_Haven/" target="_blank">Steam</a><br/><a href="https://www.reddit.com/r/SpaceHaven" target="_blank">Reddit</a><br/><a href="https://www.gog.com/game/space_haven" target="_blank">GOG</a><br/><a href="https://www.twitch.tv/directory/game/Space%20Haven" target="_blank">Twitch</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<img src="https://cdn.akamai.steamstatic.com/steam/apps/979110/extras/desc_top_banner_620x181.jpg?t=1670508452" /><br>Embark on a space voyage with your ragtag crew of civilians in search of a new home. <strong>Build</strong> spaceships tile by tile, <strong>create</strong> optimal gas conditions, <strong>manage</strong> the needs and moods of their crew, <strong>encounter</strong> other space-faring groups, <strong>and explore</strong> the universe in this <strong>spaceship colony sim.</strong><br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/979110/extras/DesignAndBuild.png?t=1670508452" /><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/979110/extras/build_rooms_620_zoom_at_end.gif?t=1670508452" /><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/979110/extras/buildings1noBG.png?t=1670508452" /><br><ul class="bb_ul"><li><strong>Customize</strong> - Complete freedom to build a spaceship or station of your own desire. Place every piece of ship hull, wall, door and facility wherever you want. <br></li><li><strong>Functional</strong> - All facilities serve a purpose. Crew members will sleep in beds, use toilets, be disturbed by a noisy room and praise you for an arcade machine.</li></ul><img src="https://cdn.akamai.steamstatic.com/steam/apps/979110/extras/resources1noBG.png?t=1670508452" /><br>A functional spaceship can be built <strong>tile-by tile</strong>, giving you the opportunity to shape a <strong>spaceship of your own desire</strong>. It can be symmetric and streamlined, or an asymmetrical whimsical looking thing. It does not have to look like a conventional spaceship depicted in sci-fi literature, you are free to design your own, <strong>the choice is yours!</strong><br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/979110/extras/SimulatedGasSystems.png?t=1670508452" /><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/979110/extras/gas_simulation_620.gif?t=1670508452" /><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/979110/extras/lifesupport1noBG.png?t=1670508452" /><br><ul class="bb_ul"><li><strong>Oxygen and CO2</strong> - Keep optimal Oxygen and CO2 levels by building life support modules for your crew members.<br></li><li><strong>Hazardous gases</strong> - Certain facilities and explosions can release hazardous gases. Build scrubbers to purify the air.<br></li><li><strong>Temperature and power</strong> - Build thermal regulators to maintain an ideal temperature for your crew. Build power nodes and set up power distribution throughout the ship.<br></li><li><strong>Comfort</strong> - Building a bed right next to the ship core will disturb sleep. Design your ship for crew comfort.</li></ul><img src="https://cdn.akamai.steamstatic.com/steam/apps/979110/extras/gasIcons1.png?t=1670508452" /><br>The isometric tile-based gas system <strong>simulates various gases, temperature and crew comfort on your spaceship.</strong> Humans, plants and facilities react to the conditions surrounding them, giving meaning to how you design your ship and the living conditions you create. <strong>Secure facilities, optimize crew survival and well-being</strong>, but also think of possible future accidents and chaos generated from crew combat or environmental hazards.<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/979110/extras/DeepCharacterization.png?t=1670508452" /><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/979110/extras/mood_620.gif?t=1670508452" /><br><ul class="bb_ul"><li><strong>Skills and traits</strong> - Every crew member has their own set of skills and traits. A wimp might get scared shooting a gun, while an iron-stomach can eat anything unaffected.<br></li><li><strong>Mood</strong> - A happy crew member needs food, sleep, comfort, safety and friends. Take something away and their mood will be affected. <br></li><li><strong>Conditions</strong> - Crew members might feel adventurous, suffer from starvation, feel unhygienic, or they simply ate too much. Various conditions affect how they feel. <br></li><li><strong>Mental breaks</strong> - When the stress is too much for a crew member they may suffer a mental break. Some will vent themselves out of the air lock, while others might start a fight.</li></ul><img src="https://cdn.akamai.steamstatic.com/steam/apps/979110/extras/moodIcons1.png?t=1670508452" /><br>In Space Haven <strong>characters aren't mere robots.</strong> The game simulates needs, moods, health and skills of your crew members and they develop relationships with each other. Their past life occupation and hobbies will affect their <strong>skills and know-how, and they have both positive and negative traits.</strong> Witness joyful moments, depression, and drama surrounding different crew members as you journey onward seeking a new home. <br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/979110/extras/Missions.png?t=1670508452" /><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/979110/extras/exploring_01_cut_620.jpg?t=1670508452" /><br><ul class="bb_ul"><li><strong>Away missions</strong> - Equip your crew members and organize away teams to explore derelict ships or visit stations or spaceships of other factions. <br></li><li><strong>Draft</strong> - Draft and move your crew members to attack enemies and save their friends.<br></li><li><strong>Inventory</strong> - Each crew member has their own unique inventory. Equip them with pistols, rifles, grenades and more.</li></ul><img src="https://cdn.akamai.steamstatic.com/steam/apps/979110/extras/weapons1noBG.png?t=1670508452" /><br>Equip your crew with space suits and weapons and <strong>organize away teams to explore derelict ships and stations.</strong> Explore and salvage resources and items; find activated cryopods with someone frozen inside. Visit spaceships or stations of other factions and find data logs telling stories of past spacefarers searching for a new home. <br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/979110/extras/CrewCombatAndAliens.png?t=1670508452" /><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/979110/extras/alien_battle_620_zoom.gif?t=1670508452" /><br><ul class="bb_ul"><li><strong>Crew combat </strong>- Engage in combat with enemy factions or an alien species. <br></li><li><strong>Aliens</strong> - Watch aliens incapacitate your crew members and capture them alive. See them suffer in the alien lair and decide if you want to try to save them or not.</li></ul><img src="https://cdn.akamai.steamstatic.com/steam/apps/979110/extras/alienEggs1noBG.png?t=1670508452" /><br><strong>Aliens capture your crew members and cocoon them against walls in their base.</strong> See them suffer in the alien lair and decide if you want to save them or not. Explore derelict ships and discover someone from the original crew of the ship captured by the aliens. Events like these create interesting back stories to new arrivals to your crew.<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/979110/extras/ShipToShipCombat.png?t=1670508452" /><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/979110/extras/turret_explosion_combined_620x349_new.gif?t=1670508452" /><br><ul class="bb_ul"><li><strong>Battlestations</strong> - Watch your crew take battlestations as you engage the enemy in ship-to-ship battle. See your crew load turrets with projectiles, put out fires from explosions, patch hull breaches and repair vital facilities in the midst of battle.<br></li><li><strong>Tactical</strong> - Target the enemy ship engine and stop them from fleeing. See them do the same to you. Engage their turrets directly or try to focus on the enemy ship core and see their ship go pitch black. Build shields to protect your most vital segments of your ships.</li></ul>Build turrets and engage in tactical ship-to-ship combat, <strong>where a hit and explosion could cause a snowball effect of fire, smoke, hazardous gases and even hull breaches</strong> for either party. All crew members need to work together to win the battle.<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/979110/extras/HealthModeling.png?t=1670508452" /><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/979110/extras/doctor_medical_area_620.jpg?t=1670508452" /><br><ul class="bb_ul"><li><strong>Cryopods</strong> - Protect your crew from side-effects of Inter-stellar travel. Place crew members into stasis to freeze the progression of a disease or to await rescue. <br></li><li><strong>Medical</strong> - Treat crew members for injuries, wounds and diseases. Medical conditions affect crew members in various ways.</li></ul><img src="https://cdn.akamai.steamstatic.com/steam/apps/979110/extras/medical1noBG.png?t=1670508452" /><br>Your crew members will become wounded in battles and might catch a serious disease. Set up a medical room, scan for diseases and foreign masses and <strong>have your best doctor tend to illnesses and perform surgeries.</strong> Hope that your doctor is not absent minded and leaves a surgical tool inside.<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/979110/extras/GalaxyAndFactions.png?t=1670508452" /><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/979110/extras/starmap_01_620.gif?t=1670508452" /><br><ul class="bb_ul"><li><strong>Generated galaxy</strong> - Explore a new procedurally generated galaxy each playthrough, with planets, asteroids, stations and spaceships of other factions.<br></li><li><strong>Factions</strong> - Interact with various factions all trying to survive and establish dominance their own way. Meet pirates, merchants, slave traders, cultists and more and develop relationships with each. <br><img src="https://cdn.akamai.steamstatic.com/steam/apps/979110/extras/factionIcons1noBG.png?t=1670508452" /><br></li><li><strong>Resources</strong> - Mine for raw resources and refine them to building materials. Trade resources with other groups you meet.</li></ul><img src="https://cdn.akamai.steamstatic.com/steam/apps/979110/extras/resources2noBG.png?t=1670508452" /><br>Explore a new procedurally generated galaxy each new playthrough, with various factions all trying to survive and establish dominance their own way. <strong>You'll meet pirates, slavers, merchants, cults, androids and more.</strong> Jump into hyperspace, seek out resources and meet various groups and develop your relationship with them.<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/979110/extras/hypersleep_01_620_cut.jpg?t=1670508452" /><br><strong>Cool things that can happen in Space Haven:</strong><br><br><ul class="bb_ul"><li> Gain a new crew member by finding a activated cryo chamber aboard a derelict ship.<br></li><li> Have a space burial for your fallen crew member to let other crew members say good bye.<br></li><li> Grow plants with bio mass and water recycled from toilets.<br></li><li> Eat the meat from a fallen crew member or an invader if desperation is high.<br></li><li> Watch aliens capture your crew member and cocoon them to a wall in their lair. Will you go save them or leave them there?</li></ul><br><u>Keywords:</u> space, base building, simulation, strategy, sandbox, survival, management, crafting, open world, indie, build, city builder, sci-fi, procedural, sim.<br><br><strong>Wishlist and Follow now!</strong>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
