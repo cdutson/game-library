@@ -1,0 +1,284 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Star Birds</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('66bf4ba3-3781-48b9-aac7-fddfb950488b/6315ce93-02aa-42a8-b2f6-61691c2e3e11.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img Height="48" class="lozad" data-src="66bf4ba3-3781-48b9-aac7-fddfb950488b/09bf192c-f93c-408a-a491-30f88dc82a5f.ico"/> Star Birds</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img Height="175" class="lozad" data-src="66bf4ba3-3781-48b9-aac7-fddfb950488b/53ebb3b4-88bf-4b19-b169-9d23c51b0a4e.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="#quicklink-2025-09-08">2025-09-08</a> 16:50:03</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="#quicklink-2025-09-08">2025-09-08</a> 16:50:28</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="index.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="#quicklink-"></a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Indie">Indie</a><br/><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Simulator">Simulator</a><br/><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Strategy">Strategy</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="#quicklink-Toukana Interactive">Toukana Interactive</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="#quicklink-Toukana Interactive">Toukana Interactive</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://store.steampowered.com/app/2719750" target="_blank">Uknown</a><br/><a href="https://star-birds.com/" target="_blank">Uknown</a><br/><a href="https://www.twitch.tv/toukana_interactive" target="_blank">Uknown</a><br/><a href="https://twitter.com/_toukana" target="_blank">Uknown</a><br/><a href="https://discord.gg/toukana" target="_blank">Uknown</a><br/><a href="https://bsky.app/profile/toukana.bsky.social" target="_blank">Uknown</a><br/><a href="https://www.youtube.com/channel/UCpC2zhldGXRznxcZKhGFJFg" target="_blank">Uknown</a><br/><a href="https://www.instagram.com/toukana_interactive/" target="_blank">Uknown</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<p class="bb_paragraph" >Star Birds is a relaxing asteroid base-building and resource management game where you help your population of spacefaring birds prosper and thrive. No matter if you're a genre veteran or want to get a foot into an oftentimes overwhelming space: the Star Birds will be happy to have you by their side. And not just because chaos would ensue very quickly without you.</p><p class="bb_paragraph" ></p><p class="bb_paragraph" ><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2719750/extras/6f2cb370e72ec40ff1d445eda69ec8eb.avif?t=1757346571" width=616 height=70 /></span></p><p class="bb_paragraph" >Scan and claim nearby asteroids to mine resources ranging from ice and metals to rather obscure things. Build production facilities and automate the manufacturing of increasingly advanced goods. Deliver products to your space station to fulfill quests that satisfy the needs of your birds, however odd these might be. Establish transportation routes to create a bustling cosmic production network, advance your technology and ultimately take off to foreign star systems to pursue the mysteries of your galaxy!</p><p class="bb_paragraph" ></p><p class="bb_paragraph" ><span class="bb_img_ctn"><video class="bb_img" autoplay muted loop playsinline poster="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2719750/extras/858a20666e6cb6fc1082e4525b32fd8f.poster.avif?t=1757346571" width=616 height=346 ><source src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2719750/extras/858a20666e6cb6fc1082e4525b32fd8f.webm?t=1757346571" type="video/webm; codecs=vp9"><source src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2719750/extras/858a20666e6cb6fc1082e4525b32fd8f.mp4?t=1757346571" type="video/mp4"></video></span></p><p class="bb_paragraph" ><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2719750/extras/ef4cb02a80f1bcdf67159af094e27cc9.avif?t=1757346571" width=616 height=70 /></span></p><p class="bb_paragraph" ><strong> 360° Base Building </strong><br>  </p><p class="bb_paragraph" >Place buildings on procedurally generated asteroids and build your own little worlds floating in space. Use each asteroid's unique shape and available surface to create the perfect production network. Take the role of a cosmic pioneer and strategically place and connect production facilities with hand-drawn-pipes to optimize your resource flow.</p><p class="bb_paragraph" ></p><p class="bb_paragraph" ><strong>Explore and Experiment</strong></p><p class="bb_paragraph" >Gather resources and explore different ways to transform and combine them into a variety of goods you're going to need for your mission. Investigate the asteroid's surface, overcome unforeseen obstacles and excavate mysterious artifacts.</p><p class="bb_paragraph" ></p><p class="bb_paragraph" ><strong>Missions and Mysteries</strong></p><p class="bb_paragraph" >Follow strange traces and lead your crew to uncover a big secret awaiting you in the far reaches of your galaxy. Explore and master the oddities of foreign star systems to conclude this adventurous journey.</p><p class="bb_paragraph" ></p><p class="bb_paragraph" ><strong>Automate and Admire</strong></p><p class="bb_paragraph" >Establish an ever-growing network of production chains throughout your star system. Improve and optimize, or sit back and watch the satisfying rhythm of your bustling space factory.</p><p class="bb_paragraph" ></p><p class="bb_paragraph" ></p><p class="bb_paragraph" ><strong>Collect and Complete</strong><br><br>Fill your collection with all the things you find on your journey! Take on bonus challenges and earn shiny medals for perfecting your setup.</p><p class="bb_paragraph" ></p><p class="bb_paragraph" ></p><p class="bb_paragraph" ><strong>Set out for the stars!</strong><br><br>Upgrade your space station and research advanced technologies. Unlock new production paths and increase their efficiency to start your journey into the unknown depths of space and uncover its mysteries!</p><p class="bb_paragraph" ></p><p class="bb_paragraph" ><span class="bb_img_ctn"><video class="bb_img" autoplay muted loop playsinline poster="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2719750/extras/8b466c2c8d15c6dadffc4e96404f99b0.poster.avif?t=1757346571" width=616 height=346 ><source src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2719750/extras/8b466c2c8d15c6dadffc4e96404f99b0.webm?t=1757346571" type="video/webm; codecs=vp9"><source src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2719750/extras/8b466c2c8d15c6dadffc4e96404f99b0.mp4?t=1757346571" type="video/mp4"></video></span></p><h2 class="bb_tag" >✅ What Star Birds offers ✅</h2><ul class="bb_ul"><li><p class="bb_paragraph" > 360° building on asteroids ranging from space potato to various easter eggs </p></li><li><p class="bb_paragraph" > resource gathering &amp; management mechanics </p></li><li><p class="bb_paragraph" > a vibrant art style inspired by kurzgesagt videos (and lots of birds, of course) </p></li><li><p class="bb_paragraph" > a mysterious campaign and story with kurzgesagt vibes </p></li><li><p class="bb_paragraph" >resources &amp; production processes inspired by real science </p></li><li><p class="bb_paragraph" >high replayability on countless procedurally generated asteroids  </p></li><li><p class="bb_paragraph" >intuitive and satisfying game mechanics </p></li><li><p class="bb_paragraph" >a unique and colorful journey through outer space </p></li><li><p class="bb_paragraph" >a magpie's nest full of shiny achievements   </p></li></ul><p class="bb_paragraph" ></p><h2 class="bb_tag" >❌ What Star Birds <strong>doesn't</strong> offer ❌  </h2><ul class="bb_ul"><li><p class="bb_paragraph" >bird-perspective roleplaying gameplay </p></li><li><p class="bb_paragraph" >multiplayer features or BvB (bird vs bird) </p></li><li><p class="bb_paragraph" >4X strategy gameplay </p></li><li><p class="bb_paragraph" >realistic simulation and physics (the birds are going through enough in our videos)</p></li></ul><p class="bb_paragraph" ></p><p class="bb_paragraph" ><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2719750/extras/4684adda148c641c1a1cb6ae344f1a13.avif?t=1757346571" width=616 height=70 /></span></p><p class="bb_paragraph" >Star Birds is made by Toukana Interactive, creators of Dorfromantik, and the curiosity sparking animation studio kurzgesagt – in a nutshell. A match made in space, but also in Germany. With each side extending the other a wing, this collaboration has gone from bad puns about fruit to creating a colorful space mining operation that we're proud to send our birds on.   </p><p class="bb_paragraph" ></p><p class="bb_paragraph" >Speaking of: No birds were harmed in the creation of this game, we promise!</p>
+				</div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>

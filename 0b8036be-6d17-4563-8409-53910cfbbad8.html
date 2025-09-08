@@ -1,0 +1,284 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Abiotic Factor</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('0b8036be-6d17-4563-8409-53910cfbbad8/063f01c0-6591-45d5-844e-b119261b10ec.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img Height="48" class="lozad" data-src="0b8036be-6d17-4563-8409-53910cfbbad8/4c075f3a-d032-49cb-aa77-f8e9fdecb1af.ico"/> Abiotic Factor</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img Height="175" class="lozad" data-src="0b8036be-6d17-4563-8409-53910cfbbad8/87a8ac56-f73c-483c-858f-115485158ea2.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Playtime</TD>
+								<TD>4h 22m 0s</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="#quicklink-2025-09-06">2025-09-06</a> 1:03:53</TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="#quicklink-2025-08-24">2025-08-24</a> 15:32:26</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="#quicklink-2025-08-24">2025-08-24</a> 15:32:41</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="index.html#quicklink-Played">Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="#quicklink-2025-07-22">2025-07-22</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="#quicklink-75">75</a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="#quicklink-92">92</a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Adventure">Adventure</a><br/><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Indie">Indie</a><br/><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Role-playing (RPG)">Role-playing (RPG)</a><br/><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Shooter">Shooter</a><br/><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Simulator">Simulator</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="#quicklink-Deep Field Games">Deep Field Games</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="#quicklink-Playstack">Playstack</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="#quicklink-Co-Operative">Co-Operative</a><br/><a href="#quicklink-Multiplayer">Multiplayer</a><br/><a href="#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://store.steampowered.com/app/427410/Abiotic_Factor" target="_blank">Uknown</a><br/><a href="https://www.youtube.com/channel/UC0vln15Bk_aJQBT-figuJyg" target="_blank">Uknown</a><br/><a href="https://twitter.com/ABFGame" target="_blank">Uknown</a><br/><a href="http://www.abioticfactor.com" target="_blank">Uknown</a><br/><a href="https://discord.gg/DeepField" target="_blank">Uknown</a><br/><a href="https://store.playstation.com/en-us/concept/10012483" target="_blank">Uknown</a><br/><a href="https://www.twitch.tv/directory/category/abiotic-factor" target="_blank">Uknown</a><br/><a href="https://www.reddit.com/r/AbioticFactor/" target="_blank">Uknown</a><br/><a href="https://bsky.app/profile/abioticfactor.com" target="_blank">Uknown</a><br/><a href="https://www.xbox.com/en-US/games/store/abiotic-factor/9p4nv23q6qc2" target="_blank">Uknown</a><br/><a href="https://abioticfactor.wiki.gg/" target="_blank">Uknown</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<p class="bb_paragraph" ><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/427410/extras/d5e65c3ab2d7fd68a440923f8a2848d3.webp?t=1754926992" width=616 height=50 /></span>Home to the world's greatest minds, GATE operates a global network of secretive research laboratories, spanning every field of scientific study - and the realms beyond.</p><p class="bb_paragraph" ></p><p class="bb_paragraph" >As a GATE employee you extend the bounds of human knowledge, and seek to explain the unexplainable - including anomalies and paranormal entities: from gravity-distorting artifacts to supernatural creatures with an unbridled instinct for violence. Safety, security, and secrecy are of the utmost importance… usually.</p><p class="bb_paragraph" ></p><p class="bb_paragraph" >After a catastrophic containment breach, your workplace has become a cosmic battle zone: anomalous entities are on the loose, enemies from other dimensions are invading via portals, and an arcane military sect - known as The Order - is targeting personnel and entities indiscriminately, aiming to seize artifacts and put an end to the chaos. </p><p class="bb_paragraph" ></p><p class="bb_paragraph" >Containment procedures have failed and help isn’t on the way. Stranded miles beneath the surface, it’s up to you and your fellow scientists to band together, plan your escape, and make this underground complex your new home - for now.</p><p class="bb_paragraph" ></p><p class="bb_paragraph" ><span class="bb_img_ctn"><video class="bb_img" autoplay muted loop playsinline poster="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/427410/extras/6d35b5d183b6dc4989fff9d243378cdc.poster.avif?t=1754926992" width=616 height=348 ><source src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/427410/extras/6d35b5d183b6dc4989fff9d243378cdc.webm?t=1754926992" type="video/webm; codecs=vp9"><source src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/427410/extras/6d35b5d183b6dc4989fff9d243378cdc.mp4?t=1754926992" type="video/mp4"></video></span></p><p class="bb_paragraph" ></p><p class="bb_paragraph" ><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/427410/extras/d9bce182c88e61938e4ac7c06e377422.webp?t=1754926992" width=616 height=50 /></span><strong>Abiotic Factor brings a 90’s sci-fi twist and rich character progression to the multiplayer open world survival crafting genre. </strong>Up to 6 players can choose their PhDs, build their scientist, gear up, and explore a massive subterranean complex, filled with supernatural artifacts, transdimensional foes, and science experiments gone awry. </p><p class="bb_paragraph" ></p><p class="bb_paragraph" ><span class="bb_img_ctn"><video class="bb_img" autoplay muted loop playsinline poster="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/427410/extras/359c35aea91586baccbfa942bc55cf2f.poster.avif?t=1754926992" width=616 height=220 ><source src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/427410/extras/359c35aea91586baccbfa942bc55cf2f.webm?t=1754926992" type="video/webm; codecs=vp9"><source src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/427410/extras/359c35aea91586baccbfa942bc55cf2f.mp4?t=1754926992" type="video/mp4"></video></span></p><p class="bb_paragraph" ></p><p class="bb_paragraph" ><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/427410/extras/6a6f931ade7e19cd75c708fccdc52be0.webp?t=1754926992" width=616 height=30 /></span>Between alien threats hunting their next meal, trigger happy soldiers, and the world’s most advanced robotic security forces attacking personnel working overtime, there’s no shortage of danger. As a scientist, fighting isn’t your forte, so you’ll need to put your PhD to work to outwit your opponents: craft ingenious and outlandish tools, weapons and gear, from simple nets and wooden bats to laser-cannons and elaborate traps - everything your big science brain can muster! </p><p class="bb_paragraph" ></p><p class="bb_paragraph" ><span class="bb_img_ctn"><video class="bb_img" autoplay muted loop playsinline poster="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/427410/extras/9137db8cbcca0809080a1bcbae07dd2e.poster.avif?t=1754926992" width=616 height=220 ><source src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/427410/extras/9137db8cbcca0809080a1bcbae07dd2e.webm?t=1754926992" type="video/webm; codecs=vp9"><source src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/427410/extras/9137db8cbcca0809080a1bcbae07dd2e.mp4?t=1754926992" type="video/mp4"></video></span></p><p class="bb_paragraph" ></p><p class="bb_paragraph" ><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/427410/extras/63000c777f242d35392c96f2c784b5cb.webp?t=1754926992" width=616 height=30 /></span>Make yourself at home - you’re here for the long haul. Scavenge resources from vacant offices and empty labs, raid vending machines, and steal company property to build a new base of operations as you explore the facility. When it’s time for a change of scenery, pack up your belongings and move them across the facility using handcarts, forklifts, SUVs, teleporters, and more.</p><p class="bb_paragraph" ></p><p class="bb_paragraph" ><span class="bb_img_ctn"><video class="bb_img" autoplay muted loop playsinline poster="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/427410/extras/20ee59a5c774932c16694b4965a99e74.poster.avif?t=1754926992" width=616 height=220 ><source src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/427410/extras/20ee59a5c774932c16694b4965a99e74.webm?t=1754926992" type="video/webm; codecs=vp9"><source src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/427410/extras/20ee59a5c774932c16694b4965a99e74.mp4?t=1754926992" type="video/mp4"></video></span></p><p class="bb_paragraph" > </p><p class="bb_paragraph" ><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/427410/extras/84c09313adbae21ffc83ab9d6f4f1a4b.webp?t=1754926992" width=616 height=30 /></span>Don your lab coat and earn your PhD: from Phytogenetic Botanist to Defense Analyst and Archotechnic Consultant (and many, many more), each with its own advantages essential to survival. Combine traits and skills, then level up to earn perks and abilities with your fellow scientists to forge a formidable scientific force. </p><p class="bb_paragraph" ></p><p class="bb_paragraph" ><span class="bb_img_ctn"><video class="bb_img" autoplay muted loop playsinline crossorigin="anonymous" poster="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/427410/extras/b8631885af975526f1a40c8b4242cc5b.poster.avif?t=1754926992" width=616 height=220 ><source src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/427410/extras/b8631885af975526f1a40c8b4242cc5b.webm?t=1754926992" type="video/webm; codecs=vp9"></video></span></p><p class="bb_paragraph" ></p><p class="bb_paragraph" ><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/427410/extras/721613a9c0f1785cf3e3b158ee14b233.webp?t=1754926992" width=616 height=30 /></span>Working at GATE may have been a dream job, but dying here wasn’t part of your five year plan. Explore this massive underground facility as well as many worlds beyond and take full advantage of the most advanced technology unknown to mankind in this interdimensional sci-fi adventure!</p><p class="bb_paragraph" ></p><p class="bb_paragraph" ><span class="bb_img_ctn"><video class="bb_img" autoplay muted loop playsinline poster="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/427410/extras/a1edda8e7915c13a7827b2fba6b27c1c.poster.avif?t=1754926992" width=616 height=220 ><source src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/427410/extras/a1edda8e7915c13a7827b2fba6b27c1c.webm?t=1754926992" type="video/webm; codecs=vp9"><source src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/427410/extras/a1edda8e7915c13a7827b2fba6b27c1c.mp4?t=1754926992" type="video/mp4"></video></span></p>
+				</div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>
