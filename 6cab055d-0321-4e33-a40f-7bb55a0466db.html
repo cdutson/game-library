@@ -1,0 +1,284 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Heroes For Hire</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('6cab055d-0321-4e33-a40f-7bb55a0466db/2134ca6c-8644-4fb6-8d96-fb2c8518b41e.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img Height="48" class="lozad" data-src="6cab055d-0321-4e33-a40f-7bb55a0466db/e7c3bbc2-faae-460a-816d-9b2340bf1845.ico"/> Heroes For Hire</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img Height="175" class="lozad" data-src="6cab055d-0321-4e33-a40f-7bb55a0466db/8c390465-d15c-48f0-b6e3-41d7353808ee.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="#quicklink-2025-11-07">2025-11-07</a> 21:42:19</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="#quicklink-2025-11-07">2025-11-07</a> 21:42:32</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="index.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="#quicklink-2025-07-15">2025-07-15</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Indie">Indie</a><br/><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Simulator">Simulator</a><br/><a href="default%20list%20text%20combobox%20quicklinks_genre_ascending_name_ascending.html#quicklink-Strategy">Strategy</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="#quicklink-Multiplayer">Multiplayer</a><br/><a href="#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://store.steampowered.com/app/2836070" target="_blank">Steam</a><br/><a href="https://www.heroesforhiregame.com/" target="_blank">Official Website</a><br/><a href="https://x.com/HeroesForHire__" target="_blank">Twitter</a><br/><a href="https://www.youtube.com/@HeroesForHireGame" target="_blank">YouTube</a><br/><a href="https://discord.gg/VxbbttTh" target="_blank">Discord</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD><a href="#quicklink-2D">2D</a><br/><a href="#quicklink-Auto Battler">Auto Battler</a><br/><a href="#quicklink-Automation">Automation</a><br/><a href="#quicklink-Base Building">Base Building</a><br/><a href="#quicklink-Capitalism">Capitalism</a><br/><a href="#quicklink-Colony Sim">Colony Sim</a><br/><a href="#quicklink-Crafting">Crafting</a><br/><a href="#quicklink-Dungeon Crawler">Dungeon Crawler</a><br/><a href="#quicklink-Economy">Economy</a><br/><a href="#quicklink-Inventory Management">Inventory Management</a><br/><a href="#quicklink-Loot">Loot</a><br/><a href="#quicklink-Management">Management</a><br/><a href="#quicklink-Pixel Graphics">Pixel Graphics</a><br/><a href="#quicklink-PvP">PvP</a><br/><a href="#quicklink-Resource Management">Resource Management</a><br/><a href="#quicklink-Roguelite">Roguelite</a><br/><a href="#quicklink-Sandbox">Sandbox</a><br/><a href="#quicklink-Simulation">Simulation</a><br/><a href="#quicklink-Team-Based">Team-Based</a><br/><a href="#quicklink-Time Management">Time Management</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<p class="bb_paragraph" style="text-align: center"><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2836070/extras/ed8e17970a3a7c11fbf810ebf9dfaf62.avif?t=1762539780" width="631" height="80"></span></p><p class="bb_paragraph"><strong>Heroes For Hire is an incremental business management game focused around building a dungeon raiding guild from the bottom up with the GuildOS system.</strong>    </p><p class="bb_paragraph">Managing a guild won't be easy as it sounds, though! When running any business, you already have to worry about your employees, your customers, your finances and your living quarters.</p><p class="bb_paragraph" style="text-align: center"> Just imagine what could go wrong when you start bringing dungeons, fantasy and magic into the picture, too!<span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2836070/extras/54f45f6198d3e7d97c34e27b1f3d106b.avif?t=1762539780" width="631" height="72"></span></p><p class="bb_paragraph">Do you have what it takes to run the number one guild in the county? If so, you can prove it by competing in tournaments and competitions with rival guilds to determine who really is Raiders Digest's top guild of the week!</p><p class="bb_paragraph"></p><p class="bb_paragraph" style="text-align: center"><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2836070/extras/aa9be68cf00d8760c7b913faee25f976.webp?t=1762539780" width="631" height="32"></span></p><p class="bb_paragraph" style="text-align: center"><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2836070/extras/5ddc5e8d855e0359053973aff82f21a3.avif?t=1762539780" width="631" height="64"></span></p><p class="bb_paragraph"><strong>Employees are the life blood of any business. After all, how are you going to raid dungeons when you don't have any dungeon raiders on the payroll?</strong></p><p class="bb_paragraph" style="text-align: center"><span class="bb_img_ctn"><picture><source srcset="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2836070/extras/0046583c4c5ba010df108aae57ab5ac3.apng?t=1762539780"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2836070/extras/0046583c4c5ba010df108aae57ab5ac3.poster.avif?t=1762539780" class="bb_img" width="624" height="408"></picture></span></p><ul class="bb_ul"><li><p class="bb_paragraph">Recruit and manage a team of heroes with their set of skills, personality and stats to help them during raids and tournaments. </p></li><li><p class="bb_paragraph">Craft, buy and find equipment and weaponry that can tie-in roles and niches for the team and guild. </p></li><li><p class="bb_paragraph">Make sure to keep the needs of your employees well met by adjusting their wages, schedule and living quarters.</p><p class="bb_paragraph" style="text-align: center"><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2836070/extras/aa9be68cf00d8760c7b913faee25f976.webp?t=1762539780" width="631" height="32"></span></p></li></ul><p class="bb_paragraph" style="text-align: center"><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2836070/extras/da51ca20ae51248db877c0134042be3e.avif?t=1762539780" width="631" height="64"></span></p><p class="bb_paragraph"><strong>Set up your heroes with the best equipment and items you can find, and go and let them explore some dungeons on their own when they're ready!</strong></p><p class="bb_paragraph" style="text-align: center"><span class="bb_img_ctn"><picture><source srcset="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2836070/extras/13ae10cc3a1094b8dc34df4a03832b6e.apng?t=1762539780"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2836070/extras/13ae10cc3a1094b8dc34df4a03832b6e.poster.avif?t=1762539780" class="bb_img" width="672" height="480"></picture></span></p><ul class="bb_ul"><li><p class="bb_paragraph">Make and upgrade your heroes' equipment using materials scavenged in raids and on gathering missions. </p></li><li><p class="bb_paragraph">Craft the necessary tools needed to help your heroes out on their adventures, such as potions, bombs and relics. </p></li><li><p class="bb_paragraph">Build the furniture needed to turn your guild from a shack to a castle fit for a hero of any calibre.</p><p class="bb_paragraph" style="text-align: center"><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2836070/extras/aa9be68cf00d8760c7b913faee25f976.webp?t=1762539780" width="631" height="32"></span></p><p class="bb_paragraph"> </p></li></ul><p class="bb_paragraph" style="text-align: center"><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2836070/extras/a64307102f5dc96602782da337c8d055.avif?t=1762539780" width="631" height="64"></span></p><p class="bb_paragraph" style="text-align: center"><strong>Of course, there's more to running a guild than just the heroes and finances—there's the guild itself, too!</strong><span class="bb_img_ctn"><picture><source srcset="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2836070/extras/e7fea1313946c18c9566af0800e61d1d.apng?t=1762539780"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2836070/extras/e7fea1313946c18c9566af0800e61d1d.poster.avif?t=1762539780" class="bb_img" width="672" height="480"></picture></span> </p><ul class="bb_ul"><li><p class="bb_paragraph">Expand your guild's living quarters with furniture that has been bought, found and crafted. </p></li><li><p class="bb_paragraph">Raise your guild's reputation to attract more guest merchants and services with stringent housing requirements. </p></li><li><p class="bb_paragraph">Build more rooms to improve the quality of life for your heroes, and unlock some upgrades at the same time. </p></li></ul><p class="bb_paragraph" style="text-align: center"><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2836070/extras/aa9be68cf00d8760c7b913faee25f976.webp?t=1762539780" width="631" height="32"></span></p><p class="bb_paragraph">Remember, there's always room to grow and expand your guild! So... </p><p class="bb_paragraph" style="text-align: center"><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2836070/extras/e85c3c1fd041fe502a111062143fe146.avif?t=1762539780" width="631" height="64"></span></p>
+				</div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>
