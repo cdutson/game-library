@@ -1,0 +1,284 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Skigill</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('adb9ff36-26ca-4c9b-829c-ce29196f5560/2e757d12-4ad4-4a00-bf0d-ae1cfcd9339f.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img Height="48" class="lozad" data-src="adb9ff36-26ca-4c9b-829c-ce29196f5560/9e2e4e78-df27-4182-a77f-851d6e7889c4.ico"/> Skigill</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img Height="175" class="lozad" data-src="adb9ff36-26ca-4c9b-829c-ce29196f5560/646af229-cbb2-43ad-9c71-7013a7e7a9a9.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="#quicklink-2025-12-19">2025-12-19</a> 11:05:13</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="#quicklink-2025-12-19">2025-12-19</a> 11:05:31</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="index.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="#quicklink-2025-10-31">2025-10-31</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="#quicklink-Indie">Indie</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="#quicklink-Achromi">Achromi</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="#quicklink-Achromi">Achromi</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://store.steampowered.com/app/3657180" target="_blank">Steam</a><br/><a href="https://bsky.app/profile/achromi.bsky.social" target="_blank">Bluesky</a><br/><a href="https://discord.gg/AKYR4nS8NX" target="_blank">Discord</a><br/><a href="https://www.youtube.com/@achromi1460" target="_blank">YouTube</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD><a href="#quicklink-2D">2D</a><br/><a href="#quicklink-Action">Action</a><br/><a href="#quicklink-Action Roguelike">Action Roguelike</a><br/><a href="#quicklink-Combat">Combat</a><br/><a href="#quicklink-Controller">Controller</a><br/><a href="#quicklink-Difficult">Difficult</a><br/><a href="#quicklink-Early Access">Early Access</a><br/><a href="#quicklink-Hack and Slash">Hack and Slash</a><br/><a href="#quicklink-Indie">Indie</a><br/><a href="#quicklink-Loot">Loot</a><br/><a href="#quicklink-Magic">Magic</a><br/><a href="#quicklink-Minimalist">Minimalist</a><br/><a href="#quicklink-Old School">Old School</a><br/><a href="#quicklink-Pixel Graphics">Pixel Graphics</a><br/><a href="#quicklink-Retro">Retro</a><br/><a href="#quicklink-Roguelike">Roguelike</a><br/><a href="#quicklink-Singleplayer">Singleplayer</a><br/><a href="#quicklink-Survival">Survival</a><br/><a href="#quicklink-Tactical">Tactical</a><br/><a href="#quicklink-Top-Down">Top-Down</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<h2 class="bb_tag"><strong><i>SKIGILL: a bullet-hell roguelike survivor, with a huge skill tree!</i></strong></h2><p class="bb_paragraph"></p><p class="bb_paragraph">A group of adventurers is trapped in an otherworldly pocket dimension. As they face waves of enemies, their only hope is: <strong>The SKIGILL</strong>!</p><h2 class="bb_tag"><strong>The SKIGILL</strong> </h2><p class="bb_paragraph">A vast magic sigil is etched on the battleground. Each one of its magic nodes provides a boon to its user: statistics increase, weapons, and powerful perks.</p><p class="bb_paragraph">Defeat enemies, collect resources, and invest them in the nearby nodes.</p><p class="bb_paragraph"><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3657180/extras/2b6f6a26402b5462e84f688fe663dbdb.avif?t=1761920669" data-big-src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3657180/extras_big/2b6f6a26402b5462e84f688fe663dbdb.avif?t=1761920669"></span></p><p class="bb_paragraph">But be careful where you go next, because you cannot conquer the entire <strong>SKIGILL</strong>&nbsp;at once. Knowledge of its layout will be crucial to your efficiency in battle and survival!</p><h2 class="bb_tag"><strong>The Heroes</strong></h2><p class="bb_paragraph">An unknown number of adventurers are trapped here. Your role is to help them conquer the <strong>SKIGILL</strong> and survive 15 minutes of unrelenting enemy waves!</p><p class="bb_paragraph"><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3657180/extras/c11d518ff9556be926f8fa20c0c372dd.avif?t=1761920669" data-big-src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3657180/extras_big/c11d518ff9556be926f8fa20c0c372dd.avif?t=1761920669"></span></p><p class="bb_paragraph">Each starts with their own weapon, perk, and position on the Skigill. Thus, each of them have unique gameplay and strategies available, but it is possible to hybridize them by reaching the other character's zone on the <strong>SKIGILL</strong>.</p><p class="bb_paragraph">For now, 3 are playable:</p><ul class="bb_ul"><li><p class="bb_paragraph">The Strongman punches his way through the waves with devastating attacks that turn the enemies into explosive projectiles!</p></li><li><p class="bb_paragraph">The Sorcerer casts lightning, jumping between the enemies and inflicting considerable damage against packs!</p></li><li><p class="bb_paragraph">The Fox is swift and nimble, it catches resources with its hookshot that pierces enemies back and forth. The resources also have an additional healing effect!</p></li></ul><p class="bb_paragraph">The 3 other characters will soon be added.</p><h2 class="bb_tag"><strong>The Weapons</strong></h2><p class="bb_paragraph">More than 40 weapons await you in chests scattered all around.&nbsp;Adapt your strategy to the weapons that fate chooses for you. Or reinforce the weapons you already own in an attempt to get your dream build!</p><p class="bb_paragraph"><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3657180/extras/ba52d874808807cb809217e9abde3a91.avif?t=1761920669" data-big-src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3657180/extras_big/ba52d874808807cb809217e9abde3a91.avif?t=1761920669"></span></p><h2 class="bb_tag"><strong>The Perks</strong></h2><p class="bb_paragraph">Reinforce your strategy with more than 30 powerful perks to include in your build! Launch lightning bolts when you collect resources, heal yourself when you open a chest, or make an explosion when you unlock a node!</p><h2 class="bb_tag"><strong>The meta progression</strong></h2><p class="bb_paragraph">A second sigil is here to empower your characters further and builds!&nbsp;</p><p class="bb_paragraph">It contains permanent statistics increases, new and specific unlockable weapons, and more characters to play!</p><p class="bb_paragraph">As you progress in the meta-sigil and learn new strategies, you can try harder difficulties, which in turn reward you with more resources to build new strategies with!</p><p class="bb_paragraph"><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3657180/extras/145f873a7c800503b4aa4699bada7bbf.avif?t=1761920669" data-big-src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3657180/extras_big/145f873a7c800503b4aa4699bada7bbf.avif?t=1761920669"></span></p><p class="bb_paragraph"></p><p class="bb_paragraph">There is no tutorial, and no text; it will be up to you to experiment and discover synergies!</p><p class="bb_paragraph">Music and SFX by Noé Guiton.</p>
+				</div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>

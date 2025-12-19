@@ -1,0 +1,284 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>The King is Watching</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('6a942fcb-b9a1-4271-b9a1-22ca0cb53df9/c388446b-0b20-4b94-902d-21e1f3d32dcc.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img Height="48" class="lozad" data-src="6a942fcb-b9a1-4271-b9a1-22ca0cb53df9/51294d89-c450-4a88-816a-bc8cdc96f9dd.ico"/> The King is Watching</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img Height="175" class="lozad" data-src="6a942fcb-b9a1-4271-b9a1-22ca0cb53df9/ab4a695f-d778-4162-a0fb-d7e1e746145a.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="#quicklink-2025-12-19">2025-12-19</a> 11:05:13</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="#quicklink-2025-12-19">2025-12-19</a> 11:05:23</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="index.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="#quicklink-2025-07-21">2025-07-21</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="#quicklink-Indie">Indie</a><br/><a href="#quicklink-Strategy">Strategy</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="#quicklink-Hypnohead">Hypnohead</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="#quicklink-Hypnohead">Hypnohead</a><br/><a href="#quicklink-tinyBuild">tinyBuild</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://store.steampowered.com/app/2753900/The_King_is_Watching/" target="_blank">Steam</a><br/><a href="https://discord.gg/5ZVbHy36Nw" target="_blank">Discord</a><br/><a href="https://www.twitch.tv/directory/category/the-king-is-watching" target="_blank">Twitch</a><br/><a href="https://www.youtube.com/@hypnohead449/" target="_blank">YouTube</a><br/><a href="https://www.reddit.com/r/TheKingIsWatching/" target="_blank">Subreddit</a><br/><a href="https://gx.games/games/xiihlr/the-king-is-watching/tracks/b2ea1952-91b3-4982-a9a7-3a1842f22dee/" target="_blank">Official Website</a><br/><a href="https://hypnohead.itch.io/the-king-is-watching" target="_blank">Itch</a><br/><a href="https://thekingiswatching.wiki.gg/" target="_blank">Community Wiki</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD><a href="#quicklink-Auto Battler">Auto Battler</a><br/><a href="#quicklink-Automation">Automation</a><br/><a href="#quicklink-Base Building">Base Building</a><br/><a href="#quicklink-City Builder">City Builder</a><br/><a href="#quicklink-Combat">Combat</a><br/><a href="#quicklink-Dark Fantasy">Dark Fantasy</a><br/><a href="#quicklink-Deckbuilding">Deckbuilding</a><br/><a href="#quicklink-Fantasy">Fantasy</a><br/><a href="#quicklink-Medieval">Medieval</a><br/><a href="#quicklink-Pixel Graphics">Pixel Graphics</a><br/><a href="#quicklink-Real Time Tactics">Real Time Tactics</a><br/><a href="#quicklink-Replay Value">Replay Value</a><br/><a href="#quicklink-Resource Management">Resource Management</a><br/><a href="#quicklink-Roguelike">Roguelike</a><br/><a href="#quicklink-Roguelite">Roguelite</a><br/><a href="#quicklink-RTS">RTS</a><br/><a href="#quicklink-Strategy">Strategy</a><br/><a href="#quicklink-Tactical">Tactical</a><br/><a href="#quicklink-Time Management">Time Management</a><br/><a href="#quicklink-Tower Defense">Tower Defense</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<p class="bb_paragraph"><span class="bb_img_ctn"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2753900/extras/b99a3414bdbd24675999abde1a3340e2.poster.avif?t=1766155574"></span></p><p class="bb_paragraph" style="text-align: center"><span class="bb_img_ctn"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2753900/extras/16115e207f37c04fbe0d8b4327f534e9.poster.avif?t=1766155574"></span></p><p class="bb_paragraph">Ah, my glorious kingdom! A land where peasants toil, miners dig, and knights train... but only when I look at them! My gaze is law—progress thrives where I watch, but the moment I turn away? Laziness! Chaos! I must choose wisely: should I focus on the fields for food, the mines for riches, or the barracks for defense? With resources, I can even expand my all-seeing gaze, ensuring my kingdom flourishes… and that no one slacks off under my rule!&nbsp;</p><p class="bb_paragraph"><span class="bb_img_ctn"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2753900/extras/ceb925c810c277de12e6243408b72287.poster.avif?t=1766155574"></span></p><p class="bb_paragraph" style="text-align: center"><span class="bb_img_ctn"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2753900/extras/11aea868653b285e103ff7579f6ead44.poster.avif?t=1766155574"></span></p><p class="bb_paragraph">Water, wheat, stone, coal, silver—every resource fuels my empire! Farms feed my people, mines fund my ambitions, and workshops forge mighty defenses. Shall I invest in archers, reinforce the walls, or harness magic? Even my castle needs repairs when the enemy strikes! Every decision shapes my reign, and only a well-managed kingdom will survive the storm.<br><br><span class="bb_img_ctn"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2753900/extras/2e3a9766022eaa21348d62d415f9d74e.poster.avif?t=1766155574"></span></p><p class="bb_paragraph" style="text-align: center"><span class="bb_img_ctn"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2753900/extras/b8e2db9f4d8e9eb4dbe3f33b2a82e9fb.poster.avif?t=1766155574"></span></p><p class="bb_paragraph" style="text-align: center"></p><p class="bb_paragraph">Rulership is no easy task! Each land presents new trials, from cursed cemeteries to infernal depths, forcing me to adapt. Yet every defeat is a lesson! As a true roguelite, my efforts grant permanent upgrades, unlocking new abilities, stronger defenses, and powerful strategies for my next reign. A true king doesn’t just rule—he evolves, forging an unstoppable legacy with each attempt!<br><br><span class="bb_img_ctn"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2753900/extras/0bab097b754c1105b4f4868688a6dd3c.poster.avif?t=1766155574"></span></p><p class="bb_paragraph" style="text-align: center"><span class="bb_img_ctn"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2753900/extras/8e19b425351a0e08ab0880221c72d845.poster.avif?t=1766155574"></span></p><p class="bb_paragraph" style="text-align: center"></p><p class="bb_paragraph">Each battlefield hides unpredictable threats—enemies are led by unexpected Generals, demanding unique tactics to defeat. Want to conquer them all? You’ll need multiple runs! But fear not! My royal council aids me with cavalry masters, arcane sages, and cunning strategists. With their wisdom—and my unwavering gaze—victory is inevitable!</p><p class="bb_paragraph"></p><p class="bb_paragraph"></p>
+				</div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>
