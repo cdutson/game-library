@@ -1,0 +1,284 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Rune Dice Demo</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img Height="48" class="lozad" data-src="42081f2b-c5de-4f96-9677-f023686fafb5/f34f59dc-e5df-45cb-b4c0-484a0095e7c5.ico"/> Rune Dice Demo</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img Height="175" class="lozad" data-src="42081f2b-c5de-4f96-9677-f023686fafb5/c1c8026c-86aa-43ac-9a7a-6c5f9d130107.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Playtime</TD>
+								<TD>1h 53m 0s</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="#quicklink-2026-03-06">2026-03-06</a> 23:53:47</TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="#quicklink-2026-03-18">2026-03-18</a> 11:21:11</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="#quicklink-2026-03-18">2026-03-18</a> 11:21:24</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="index.html#quicklink-Played">Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="#quicklink-"></a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="#quicklink-Indie">Indie</a><br/><a href="#quicklink-RPG">RPG</a><br/><a href="#quicklink-Strategy">Strategy</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD><a href="#quicklink-Action">Action</a><br/><a href="#quicklink-Colorful">Colorful</a><br/><a href="#quicklink-Deckbuilding">Deckbuilding</a><br/><a href="#quicklink-Dice">Dice</a><br/><a href="#quicklink-Dungeon Crawler">Dungeon Crawler</a><br/><a href="#quicklink-Fantasy">Fantasy</a><br/><a href="#quicklink-Indie">Indie</a><br/><a href="#quicklink-Physics">Physics</a><br/><a href="#quicklink-Pixel Graphics">Pixel Graphics</a><br/><a href="#quicklink-Roguelike">Roguelike</a><br/><a href="#quicklink-Roguelite">Roguelite</a><br/><a href="#quicklink-RPG">RPG</a><br/><a href="#quicklink-Singleplayer">Singleplayer</a><br/><a href="#quicklink-Strategy">Strategy</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<p class="bb_paragraph"><i><strong>Try Rune Dice Demo! Launch dice to create magical chain reactions by merging matching values. Play as 2 unique hero classes against challenging enemies and bosses, while collecting runes and relics for powerful synergies!</strong></i></p><p class="bb_paragraph"><br><span class="bb_img_ctn"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3989510/extras/d80f3f9bf8075e0e9ee51e8f12eb890c.poster.avif?t=1771531402"></span><br><span class="bb_img_ctn"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3989510/extras/0ee27e7039f4856552355be441449f85.poster.avif?t=1771531402"></span></p><p class="bb_paragraph">Launch dice across enchanted battlefields where realistic physics meets ancient magic. Matching dice fuse into a more powerful one that seeks its equals, triggering devastating chain combos.&nbsp;With endless replayability for each unique hero classes. Level up, complete quests, and unlock rewards.</p><p class="bb_paragraph">Plan each throw carefully - every dice placement can trigger massive combos that wipe out entire enemy waves or set up tactical future plays. Master both precise aiming and strategic prediction to unleash the full power of mystical dice fusion.</p><p class="bb_paragraph"></p><p class="bb_paragraph"><span class="bb_img_ctn"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3989510/extras/1c9d0d307f2d9905db4975bd790f0c7f.poster.avif?t=1771531402"></span></p><p class="bb_paragraph"><span class="bb_img_ctn"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3989510/extras/257dd7e0c556fc65cb6237055a535682.poster.avif?t=1771531402"></span></p><p class="bb_paragraph">Pick from 8 unique classes, each with special dice and magical abilities. Every class offers multiple heroes with different starting combinations, ensuring each adventure feels completely different.</p><p class="bb_paragraph">Spread deadly poison through enemy ranks as a Rogue, unleash lightning storms as a Mage, or absorb massive damage as a heavily armored Warrior. Each class opens up entirely new tactical approaches and synergies.</p><p class="bb_paragraph"></p><p class="bb_paragraph"><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3989510/extras/094a7f3a32f8b30ce21b89645e53b4d1.avif?t=1771531402"></span></p><p class="bb_paragraph"><span class="bb_img_ctn"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3989510/extras/19cbe5d2dd9f7044fd81be5d763eab51.poster.avif?t=1771531402"></span></p><p class="bb_paragraph">Every location culminates in challenging battles against bosses, each with unique abilities that will test your strategy.</p><p class="bb_paragraph">Some bosses summon additional minions, others manipulate the dice field, and the most dangerous can completely change combat rules. Adapt your dice collection and tactics to overcome each distinct threat.</p><p class="bb_paragraph"></p><p class="bb_paragraph"><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3989510/extras/d12f13e0bde892903c696ee118fe36d6.avif?t=1771531402"></span></p><p class="bb_paragraph">Craft a powerful combination of dice, relics, and runes that work together to define your playstyle.</p><p class="bb_paragraph">Collect magical dice through combat victories and shop purchases, discover game-changing relics that provide permanent enhancements, and gather tactical runes for battlefield manipulation. Visit ancient altars where you can risk your dice for upgrades, or play it safe and build your arsenal gradually. The synergy between your dice attacks, relic bonuses, and rune abilities creates devastating combinations and endless strategic possibilities.</p><p class="bb_paragraph"></p><p class="bb_paragraph"><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3989510/extras/698f1f370050779d20fdb165cc91cd1d.avif?t=1771531402"></span></p><p class="bb_paragraph"><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3989510/extras/f5d6d201afe70d58a81251c122b64d95.avif?t=1771531402"></span></p><ul class="bb_ul"><li><p class="bb_paragraph"> Physics-based dice throwing with magical merge mechanics</p></li><li><p class="bb_paragraph"> 8 hero classes with multiple characters each</p></li><li><p class="bb_paragraph"> Epic boss and mini-boss encounters with unique abilities</p></li><li><p class="bb_paragraph"> Diverse dice with special powers and abilities</p></li><li><p class="bb_paragraph"> Powerful relics and consumable runes for synergies</p></li><li><p class="bb_paragraph"> Procedural map generation with multiple encounter types</p></li><li><p class="bb_paragraph"> Progression system with unlocks and achievements</p></li></ul><p class="bb_paragraph"></p><p class="bb_paragraph"><span class="bb_img_ctn"><picture><source srcset="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3989510/extras/6189906322199265f2725b871647eba7.apng?t=1771531402"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3989510/extras/6189906322199265f2725b871647eba7.poster.avif?t=1771531402" class="bb_img"></picture></span></p>
+				</div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>
