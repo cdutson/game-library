@@ -1,0 +1,284 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>No Stone Unturned</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('41a1de91-39a8-4b81-8a93-15b3fad1fffb/a6e5ccc4-52e5-42f8-8b0f-238fb40bc006.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img Height="48" class="lozad" data-src="41a1de91-39a8-4b81-8a93-15b3fad1fffb/fdad3300-8fa7-4f7d-87ec-80339647ad20.ico"/> No Stone Unturned</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img Height="175" class="lozad" data-src="41a1de91-39a8-4b81-8a93-15b3fad1fffb/0cfc8a7d-ded5-4577-b13a-a29a69d86a4b.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="#quicklink-2026-04-13">2026-04-13</a> 16:48:30</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="#quicklink-2026-04-13">2026-04-13</a> 16:48:53</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="index.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="#quicklink-2026-09-30">2026-09-30</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="#quicklink-Adventure">Adventure</a><br/><a href="#quicklink-Indie">Indie</a><br/><a href="#quicklink-Puzzle">Puzzle</a><br/><a href="#quicklink-Role-playing (RPG)">Role-playing (RPG)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="#quicklink-Wise Monkey Entertainment">Wise Monkey Entertainment</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://store.steampowered.com/app/2453640" target="_blank">Steam</a><br/><a href="https://www.instagram.com/wisemonkeyltd/" target="_blank">Instagram</a><br/><a href="https://www.youtube.com/@wisemonkeyltd/" target="_blank">YouTube</a><br/><a href="https://discord.gg/5h5W6gQBUw" target="_blank">Discord</a><br/><a href="https://www.twitch.tv/directory/category/no-stone-unturned" target="_blank">Twitch</a><br/><a href="https://www.wisemonkey.gg/" target="_blank">Official Website</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD><a href="#quicklink-2D">2D</a><br/><a href="#quicklink-Action RPG">Action RPG</a><br/><a href="#quicklink-Action-Adventure">Action-Adventure</a><br/><a href="#quicklink-Adventure">Adventure</a><br/><a href="#quicklink-Choices Matter">Choices Matter</a><br/><a href="#quicklink-Comedy">Comedy</a><br/><a href="#quicklink-Detective">Detective</a><br/><a href="#quicklink-Exploration">Exploration</a><br/><a href="#quicklink-Funny">Funny</a><br/><a href="#quicklink-Interactive Fiction">Interactive Fiction</a><br/><a href="#quicklink-Investigation">Investigation</a><br/><a href="#quicklink-Multiple Endings">Multiple Endings</a><br/><a href="#quicklink-Mystery">Mystery</a><br/><a href="#quicklink-Noir">Noir</a><br/><a href="#quicklink-Open World">Open World</a><br/><a href="#quicklink-Pixel Graphics">Pixel Graphics</a><br/><a href="#quicklink-Puzzle">Puzzle</a><br/><a href="#quicklink-Simulation">Simulation</a><br/><a href="#quicklink-Story Rich">Story Rich</a><br/><a href="#quicklink-Top-Down">Top-Down</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<h2 class="bb_tag">Hello There Detectives...</h2><p class="bb_paragraph">I'd give you a long convoluted backstory... but it's simple. We got a Murder Mystery on our hands, and one question:</p><p class="bb_paragraph"></p><p class="bb_paragraph" style="text-align: center"><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2453640/extras/66744476e47968c6fb36d26946ae5398.avif?t=1775336032"></span></p><p class="bb_paragraph">What was he running from? Who, or what, stopped him? Did the chicken <i>really </i>come before the egg? If so... How?!</p><p class="bb_paragraph">Okay, maybe there's more than one question... But Detective Cox needs answers like a walrus needs a vacation (a lot) <br><br>And he needs YOUR help!&nbsp;</p><h2 class="bb_tag">Solve 'A Murder Most Fowl' and 5 more Classic Cases!</h2><p class="bb_paragraph">Learn why The Hare and the Tortoise are at each other's throats, what's got the Cat's tongue, and hoo tried to silence the watchful giant owl...? (Ya know... Hoo. Like an owl) all based on fairy tales or children's stories with a delightfully dark twist!&nbsp;</p><p class="bb_paragraph"></p><p class="bb_paragraph" style="text-align: center"><span class="bb_img_ctn"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2453640/extras/82984ce7941c04aaf16c51e465646fdb.poster.avif?t=1775336032"></span></p><p class="bb_paragraph">Stepping into the well-worn shoes of Detective Cox, a soft-boiled amnesiac squirrel,  get to the bottom of this murder the only way you know how — through a series of seemingly pointless yet surprisingly fun mini-games!</p><p class="bb_paragraph"></p><h2 class="bb_tag">A HUGE Variety of Nostalgic Mini-Games!</h2><p class="bb_paragraph"><span class="bb_img_ctn"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2453640/extras/70eddfb8fac01c0598bc83129eab1d31.poster.avif?t=1775336032"></span></p><p class="bb_paragraph"></p><p class="bb_paragraph">Armed with your trusty Detective Essentials (a magnifying glass, tape recorder and crowbar - just in case),  solve puzzles, analyse crime scenes, interrogate townsfolk and unturn stones to solve six gruesome crimes. Come to think of it, that’s a worrying number of crimes for one small village… Are you sure you’re up to the task?...</p><p class="bb_paragraph"></p><p class="bb_paragraph" style="text-align: center"><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2453640/extras/607fe37dda6a0993c22b9e1a711d54cc.avif?t=1775336032" data-big-src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2453640/extras_big/607fe37dda6a0993c22b9e1a711d54cc.avif?t=1775336032"></span></p><p class="bb_paragraph">Broaden your horizons (and the literal map) by repairing bridges, buildings and other broken... things... for this  village on the brink of ruin, completing item bundles to unlock new areas and uncover essential clues. I’m sure the answer to all of your problems lies just behind that fallen log… It must be so DAM good.</p><p class="bb_paragraph" style="text-align: center"><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2453640/extras/e2c171742066d2ecccfe97cf0d418ed4.avif?t=1775336032"></span></p><h2 class="bb_tag">Search Suspect Homes to Find Clues... At Your Own Risk...</h2><p class="bb_paragraph"><span class="bb_img_ctn"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2453640/extras/51dd03ae58c511fb14068b50b9a64ec7.poster.avif?t=1775336032"></span></p><h2 class="bb_tag">DRAW to Conclusions as you Find Key Pieces of Evidence!</h2><p class="bb_paragraph">Help Detective Cox piece together the mystery of Orchard Under Hill by completing a wide variety of familiar mini-games that not only help you solve the mysteries in town, but also act as payoffs for their own punchlines! </p><p class="bb_paragraph" style="text-align: center"><span class="bb_img_ctn"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2453640/extras/18ea7831b7d9267207b94983043bbfc2.poster.avif?t=1775336032"></span></p><p class="bb_paragraph" style="text-align: center"><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2453640/extras/317e3bffdda1acf2c3c312b9cbd39849.avif?t=1775336032"></span></p><p class="bb_paragraph"></p><h2 class="bb_tag">Crack the Case Wide Open Like an Egg! A CHICKEN EGG?! It's all adding up...</h2><p class="bb_paragraph">Detective Cox is set on becoming the Greatest Detective in the World! Help him search for clues, solve puzzles, and learn about this story-rich world of troubled animals as they all try to survive in a civilisation  on the brink of crisis. Speaking of  troubled animals...</p><p class="bb_paragraph"> </p><p class="bb_paragraph" style="text-align: center"><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2453640/extras/aecc00139a13f00e104afa7579af5061.avif?t=1775336032"></span><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2453640/extras/42092e8674241731e12923d7c3ec0f70.avif?t=1775336032"></span></p><p class="bb_paragraph"></p><p class="bb_paragraph" style="text-align: center"><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2453640/extras/8931074e4314ffc1921b7839a6ae8933.avif?t=1775336032"></span></p><p class="bb_paragraph"><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2453640/extras/5a29cd9af8ce3a8ece1df8cac1f72432.avif?t=1775336032" data-big-src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2453640/extras_big/5a29cd9af8ce3a8ece1df8cac1f72432.webp?t=1775336032"></span></p><p class="bb_paragraph">Something big is happening to this little village... Can you save the entire world before it's too late? The Giant Wise Monkey in your dreams certainly seems to think so!&nbsp;</p><p class="bb_paragraph" style="text-align: center"></p><p class="bb_paragraph"><span class="bb_img_ctn"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2453640/extras/4f37b02571895dad798410c90b000535.poster.avif?t=1775336032"></span></p><h2 class="bb_tag">Support the Game! Wishlist and Follow! (It helps our small team much more than you think!)</h2><p class="bb_paragraph">Don’t let this case go cold — support <i>No Stone Unturned by Wishlisting/Following here </i>or by Late-Pledging on our successful Kickstarter campaign from last year to receive exclusive rewards in return, including the first&nbsp;<i>No Stone Unturned </i>comic book! Just search for ‘No Stone Unturned’ on Kickstarter and follow the Orange Squirrel!</p><p class="bb_paragraph"></p><p class="bb_paragraph" style="text-align: center"><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2453640/extras/9f0251277214d61a02e3e491a8662097.avif?t=1775336032"></span></p>
+				</div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>
