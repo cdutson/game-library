@@ -1,0 +1,284 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Moonrise Fall</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('34ecb2ef-6009-4b4d-96cd-f116748498c7/889e588f-3cd0-498d-98d3-dc25933c13e7.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img Height="48" class="lozad" data-src="34ecb2ef-6009-4b4d-96cd-f116748498c7/ec71851f-90e5-43a4-9798-8bb5c193ab15.ico"/> Moonrise Fall</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img Height="175" class="lozad" data-src="34ecb2ef-6009-4b4d-96cd-f116748498c7/246b401a-95db-454a-8e05-fa7f3458b46e.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="#quicklink-2026-06-09">2026-06-09</a> 12:22:39</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="#quicklink-2026-06-09">2026-06-09</a> 12:23:05</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="index.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="#quicklink-2019-05-31">2019-05-31</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="#quicklink-Adventure">Adventure</a><br/><a href="#quicklink-Indie">Indie</a><br/><a href="#quicklink-Puzzle">Puzzle</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://store.steampowered.com/app/1035110" target="_blank">Steam</a><br/><a href="https://www.moonrisefall.com/" target="_blank">Official Website</a><br/><a href="https://www.twitch.tv/directory/game/Moonrise%20Fall" target="_blank">Twitch</a><br/><a href="https://www.nintendo.com/store/products/moonrise-fall-switch/" target="_blank">Nintendo</a><br/><a href="https://x.com/cmathes_art" target="_blank">Twitter</a><br/><a href="https://www.youtube.com/channel/UC6qIos45dBRvQp1IGXGAPFw/" target="_blank">YouTube</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD><a href="#quicklink-2D">2D</a><br/><a href="#quicklink-Adventure">Adventure</a><br/><a href="#quicklink-Atmospheric">Atmospheric</a><br/><a href="#quicklink-Exploration">Exploration</a><br/><a href="#quicklink-Indie">Indie</a><br/><a href="#quicklink-Investigation">Investigation</a><br/><a href="#quicklink-Multiplayer">Multiplayer</a><br/><a href="#quicklink-Mystery">Mystery</a><br/><a href="#quicklink-Pixel Graphics">Pixel Graphics</a><br/><a href="#quicklink-Puzzle">Puzzle</a><br/><a href="#quicklink-Sci-fi">Sci-fi</a><br/><a href="#quicklink-Supernatural">Supernatural</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<h2 class="bb_tag" style="text-align: center"><strong>W</strong>hile you're here for the sale, please check out my other games on Steam:&nbsp;</h2><p class="bb_paragraph" style="text-align: center"><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1035110/extras/bc492d72721ee243debd5237134bbe0b.avif?t=1780107953"></span></p><p class="bb_paragraph" style="text-align: center">Trapped on a space station with the Keychain Killer, you must unravel this mystery, or it will be your last. Collect evidence, interrogate suspects, and solve puzzles to stand a chance.</p><p class="bb_paragraph"></p><p class="bb_paragraph"><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1035110/extras/8cfd2bd73251a288fe6547611fd691b0.avif?t=1780107953"></span></p><p class="bb_paragraph" style="text-align: center">Deep Siren is a Lovecraftian WWII horror fairytale. When the lone survivor of the USS Siren discovers a mermaid while adrift at sea, he finds himself plunged into a world of supernatural horror fathoms beneath the surface. Utilize unique gameplay mechanics as Alex battles to hold on to his sanity.</p><p class="bb_paragraph"></p><p class="bb_paragraph"><span class="bb_img_ctn"><img class="bb_img" src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1035110/extras/f421cd8e61ee191d3f6bc6168241f133.avif?t=1780107953"></span></p><p class="bb_paragraph" style="text-align: center">Choose your loadout, choose your art brushes, and blast your way to a masterpiece! Pew-casso is a top-down action-roguelite shooter where you defeat enemies to level up and create a piece of art. The longer you last, the more complex your unique piece of art will become.</p><p class="bb_paragraph"></p><p class="bb_paragraph"></p><p class="bb_paragraph"></p><p class="bb_paragraph"><strong>Explore... Investigate... Photograph... A Hidden World</strong></p><p class="bb_paragraph"></p><p class="bb_paragraph"><strong>​Moonrise Fall</strong> is an atmospheric exploration puzzle game about a boy who finds himself lost in a supernatural forest after losing both parents in a car crash. Put your detective skills to the test. Armed with a clue-filled journal, a camera, and a lantern, he must unravel the mysteries of the forest and photograph the strange creatures that reside there. Moonrise Fall is a brain-teaser-filled world mixed with classic adventuring, exploration, and collecting. A surreal, understated experience about loss and finding new life inspired by real-life experiences. Uncover locations like caves, mines, a lumber mill, and otherworldly locales at your own pace. Discover why the boy has been trapped in this strange place and by whom. </p><p class="bb_paragraph"></p><p class="bb_paragraph">"It’s a little like Henry David Thoreau’s Walden crossed with an opium dream." </p><p class="bb_paragraph"><i>Matthew J. @infinitywaltz</i></p><p class="bb_paragraph"></p><p class="bb_paragraph"><span class="bb_img_ctn"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1035110/extras/01d21c1060d814fa8f115aad67938fcf.poster.avif?t=1780107953"></span></p><h2 class="bb_tag"></h2><h2 class="bb_tag">FEATURES:</h2><ul class="bb_ul"><li><p class="bb_paragraph"><strong>Detective:</strong> Put your observational and puzzle-solving skills to the test.</p></li><li><p class="bb_paragraph"><strong>Explore an immersive world:</strong> Rain pours, wind blows, leaves fall, insects buzz, the sun sets, the moon rises, and more in this handcrafted world.</p></li><li><p class="bb_paragraph"><strong>Night and day cycle:</strong> The world seamlessly changes between 5 times of day on its own or at your control.</p></li><li><p class="bb_paragraph"><strong>Photograph:</strong> Use the clues of the journal to discover and photograph the strange creatures (cryptids) of the forest. Check back to the journal anytime to see your photo collection.</p></li><li><p class="bb_paragraph"><strong>Investigate:</strong> Uncover many secrets, including a cipher to translate an unknown language and the messages it conceals. </p></li><li><p class="bb_paragraph"><strong>Kalimba:</strong> A playable in-game instrument which can be played at the flick of a stick. Play the correct song to call down rain, summon the wind, and more.</p></li><li><p class="bb_paragraph"><strong>Music:</strong> Features an original score as well as a music system that generates different layers of music and mixes to ensure no two playthroughs are the same.</p></li><li><p class="bb_paragraph"><strong>Puzzler:</strong> Explore varied locations that bring their own unique puzzles to solve.</p></li><li><p class="bb_paragraph"><strong>Discover:</strong> Unearth multiple Easter Eggs and behind-the-scenes info. </p></li></ul><p class="bb_paragraph"></p><p class="bb_paragraph">"This independent game is really special." </p><p class="bb_paragraph"><i></i></p><p class="bb_paragraph"></p><p class="bb_paragraph"><span class="bb_img_ctn"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1035110/extras/c90181fce6036b69283d8adc145f58d2.poster.avif?t=1780107953"></span></p><h2 class="bb_tag"></h2><h2 class="bb_tag">RATING:</h2><p class="bb_paragraph">Contains some scary, intense, and dramatic images/elements.</p>
+				</div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>

@@ -1,0 +1,284 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Subnautica 2</title>
+		<meta name="viewport" content="width=device-width, initial-scale=0.55">
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #CCC;                                         /* unvisited link color */
+}
+a:visited {
+  color: #CCC;                                         /* visited link color */
+}
+a:hover {
+  color: #EEE;                                         /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #CCC;                                         /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('08d50ef3-03d9-4362-8ef5-340e09922391/a1759c0f-7004-4380-a878-467537a36dd9.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img Height="48" class="lozad" data-src="08d50ef3-03d9-4362-8ef5-340e09922391/d862fc2e-e3e6-432f-ad58-66c422b64cd7.ico"/> Subnautica 2</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img Height="175" class="lozad" data-src="08d50ef3-03d9-4362-8ef5-340e09922391/73a4c3e7-3eed-4ce4-a7fb-f8cf2da1cdda.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Playtime</TD>
+								<TD>2m 0s</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="#quicklink-2026-05-14">2026-05-14</a> 14:35:56</TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="#quicklink-2026-06-09">2026-06-09</a> 12:22:39</TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="#quicklink-2026-06-09">2026-06-09</a> 12:22:59</TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="index.html#quicklink-Played">Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Library</TD>
+								<TD><a href="#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="#quicklink-PC (Windows)">PC (Windows)</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="#quicklink-2026-05-14">2026-05-14</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="#quicklink-90">90</a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="#quicklink-Adventure">Adventure</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="#quicklink-Unknown Worlds Entertainment">Unknown Worlds Entertainment</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="#quicklink-Unknown Worlds Entertainment">Unknown Worlds Entertainment</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="#quicklink-Co-Operative">Co-Operative</a><br/><a href="#quicklink-Multiplayer">Multiplayer</a><br/><a href="#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://www.subnautica.com/" target="_blank">Official Website</a><br/><a href="https://twitter.com/Subnautica" target="_blank">Twitter</a><br/><a href="https://discord.gg/subnautica" target="_blank">Discord</a><br/><a href="https://www.youtube.com/subnautica" target="_blank">YouTube</a><br/><a href="https://www.instagram.com/subnautica" target="_blank">Instagram</a><br/><a href="https://www.reddit.com/r/subnautica/" target="_blank">Subreddit</a><br/><a href="https://store.steampowered.com/app/1962700/" target="_blank">Steam</a><br/><a href="https://store.epicgames.com/p/subnautica-2-d27f94" target="_blank">Epic</a><br/><a href="https://www.twitch.tv/directory/category/subnautica-2" target="_blank">Twitch</a><br/><a href="https://www.facebook.com/subnautica" target="_blank">Facebook</a><br/><a href="https://bsky.app/profile/subnautica.bsky.social" target="_blank">Bluesky</a><br/><a href="https://www.xbox.com/en-US/games/store/subnautica-2/9PJPCB188SVG" target="_blank">Xbox</a><br/><a href="https://wiki.subnautica.com/sn2/" target="_blank">Community Wiki</a><br/><a href="https://en.wikipedia.org/wiki/Subnautica_2" target="_blank">Wikipedia</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Tag</TD>
+								<TD><a href="#quicklink-3D">3D</a><br/><a href="#quicklink-Action">Action</a><br/><a href="#quicklink-Adventure">Adventure</a><br/><a href="#quicklink-Atmospheric">Atmospheric</a><br/><a href="#quicklink-Base Building">Base Building</a><br/><a href="#quicklink-Casual">Casual</a><br/><a href="#quicklink-Co-op">Co-op</a><br/><a href="#quicklink-Early Access">Early Access</a><br/><a href="#quicklink-Exploration">Exploration</a><br/><a href="#quicklink-First-Person">First-Person</a><br/><a href="#quicklink-Horror">Horror</a><br/><a href="#quicklink-Multiplayer">Multiplayer</a><br/><a href="#quicklink-Open World">Open World</a><br/><a href="#quicklink-Psychological Horror">Psychological Horror</a><br/><a href="#quicklink-Sandbox">Sandbox</a><br/><a href="#quicklink-Sci-fi">Sci-fi</a><br/><a href="#quicklink-Singleplayer">Singleplayer</a><br/><a href="#quicklink-Survival">Survival</a><br/><a href="#quicklink-Survival Horror">Survival Horror</a><br/><a href="#quicklink-Underwater">Underwater</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<p class="bb_paragraph"><span class="bb_img_ctn"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1962700/extras/34226ae5474b62567bd6d27764836ebf.poster.avif?t=1780372044"></span></p><p class="bb_paragraph">Subnautica 2 is an underwater survival adventure game set on an all-new alien world. It is the next chapter in the Subnautica universe, developed by Unknown Worlds. </p><p class="bb_paragraph">Driven from your home by ongoing conflict, Alterra offers you the chance at a new life. But as the colony ship CICADA shepherds you and your fellow Pioneers to your new home, something goes awry. The ship’s AI insists that your mission should continue. Stranded and faced with near-insurmountable odds, you must do everything in your power to survive. The future of humanity on this world is in your hands.</p><p class="bb_paragraph"></p><p class="bb_paragraph"><span class="bb_img_ctn"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1962700/extras/5bbfb234503bd6c56af7d1c13152c98f.poster.avif?t=1780372044"></span></p><h2 class="bb_tag">PLAY ALONE OR WITH FRIENDS </h2><p class="bb_paragraph">Subnautica 2 is being crafted as a single-player experience that you can optionally play in online co-operative multiplayer with up to three friends. You can choose from four pre-designed characters, with more characters and customization options coming throughout Early Access. Work together to explore long-forgotten ruins and learn to adapt to a planet that might not want you there.</p><p class="bb_paragraph"></p><p class="bb_paragraph"><span class="bb_img_ctn"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1962700/extras/232014bae618b6623aa51783c0392db3.poster.avif?t=1780372044"></span></p><h2 class="bb_tag">ADAPT TO SURVIVE </h2><p class="bb_paragraph">To survive the depths and make this planet your home, you’ll need to utilize all the tools at your disposal. Traverse vibrant and breathtaking biomes with your Tadpole submersible. Design and customize bases to return to when your adventures push you beyond the safety of shallow waters. As Early Access develops, so too will your array of tools, equipment, and vehicles. Upgrades will help push you beyond your boundaries and unlock the secrets of this strange world.</p><p class="bb_paragraph"></p><p class="bb_paragraph"><span class="bb_img_ctn"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1962700/extras/3485865fd0e44523071058f2a9a169c0.poster.avif?t=1780372044"></span></p><h2 class="bb_tag">EXPLORE THE UNKNOWN </h2><p class="bb_paragraph">Scan and study a rich world of biodiversity to understand life here. Discover everything from the smallest creatures to towering Leviathans. Experience the wonder, and sometimes danger, lurking around every corner. Every dive is an opportunity to uncover why the ship's AI is so determined to continue the mission and what mysteries lie beneath the surface of this breathtaking new frontier.</p><p class="bb_paragraph"></p><p class="bb_paragraph"><span class="bb_img_ctn"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1962700/extras/9855b8fff80f80109ef0952aed530251.poster.avif?t=1780372044"></span></p><h2 class="bb_tag">DESIGNED FOR EARLY ACCESS </h2><p class="bb_paragraph">Subnautica 2 is an Early Access title in active development. Throughout this journey, we will continuously expand the world with additional biomes, creatures, and craftables, while expanding the narrative. You may encounter bugs, in-development features, and performance issues. Your feedback is the cornerstone of our development process. Join us and help shape the next chapter of the Subnautica universe.</p><p class="bb_paragraph"></p><p class="bb_paragraph"><span class="bb_img_ctn"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1962700/extras/853dc0de0cea2aa34f792291fccf72d2.poster.avif?t=1780372044"></span></p><h2 class="bb_tag">CRAFTED BY UNKNOWN WORLDS </h2><p class="bb_paragraph">Subnautica 2 is being developed by Unknown Worlds, the studio behind the award-winning Subnautica and Subnautica: Below Zero. Our journey began with the 2003 Half-Life mod Natural Selection, and today we have evolved into a fully remote, globally distributed team spanning from the United States to the United Kingdom, France, Australia, and beyond. Defined by a philosophy of open development and over a decade of community-focused innovation, we invite you to dive back into the depths with a studio dedicated to pushing the boundaries of the survival genre.</p><h2 class="bb_tag">Welcome aboard, Pioneer.</h2>
+				</div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>
